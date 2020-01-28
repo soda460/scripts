@@ -127,7 +127,7 @@ sub guess_header{
 
 		if ($fasta_id =~ /assembly.fasta\|(\d+)(_length=\d+)/) {
 
-			my $newHeader = ('>'.$mol_name.'_tig'. $1.$2."\n");
+			my $newHeader = ('>'.$mol_name.'_tig'. $1."\n");
 			my $newHeader2 = substr $newHeader, 0, 36;
 			print OUTFILE $newHeader2; 
 			print OUTFILE ($seq->seq, "\n");
