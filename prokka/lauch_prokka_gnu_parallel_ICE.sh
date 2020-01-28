@@ -35,7 +35,7 @@ mkdir -p $2/input_files
 
 printf "\n"
 
-# Creation and filling of arrays
+# Creation and filling of 3 arrays
 declare -a dna_ids
 declare -a genus_array
 declare -a species_array
