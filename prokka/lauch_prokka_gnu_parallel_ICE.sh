@@ -71,7 +71,10 @@ for i in "${dna_ids[@]}"; do
 
 		# This custom script will change the fasta header of the files produced by MOBsuite
 		fastaReHeader.pl $chromosome.fasta $i $2/input_files/$i
-		
+
+		# !!! We retain only the biggest contig i.e. the first one
+		head -n 2 $2/input_files/$i/chromosome.fasta > $2/input_files/$i/largest_chr_contig.fasta		
+
 		# Here we write the full PROKKA command
 		echo "prokka --prefix $i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
 		echo "--force --addgenes --outdir $2/$i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
@@ -79,9 +82,6 @@ for i in "${dna_ids[@]}"; do
 		echo "--proteins /data/ext4/dataDP/db/CARD_DB/protein_fasta_protein_homolog_model.fasta --usegenus --evalue 1e-09 $2/input_files/$i/largest_chr_contig.fasta" >> $sourceDir/prokka_chr_commands.txt
 
 	done
-
-	# !!! We retain only the biggest contig i.e. the first one
-	head -n 2 chromosome.fasta > $2/input_files/$i/largest_chr_contig.fasta
 
 	cd $1
 
