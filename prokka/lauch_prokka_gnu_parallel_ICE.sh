@@ -76,7 +76,7 @@ for i in "${dna_ids[@]}"; do
 		echo "prokka --prefix $i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
 		echo "--force --addgenes --outdir $2/$i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
 		echo "--genus ${genus_array[dna_id_count]} --species ${species_array[dna_id_count]} --strain $i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
-		echo "--proteins /data/ext4/dataDP/db/CARD_DB/protein_fasta_protein_homolog_model.fasta --usegenus --evalue 1e-09 $2/input_files/$i/$chromosome.fasta" >> $sourceDir/prokka_chr_commands.txt
+		echo "--proteins /data/ext4/dataDP/db/CARD_DB/protein_fasta_protein_homolog_model.fasta --usegenus --evalue 1e-09 $2/input_files/$i/largest_chr_contig.fasta" >> $sourceDir/prokka_chr_commands.txt
 
 	done
 
