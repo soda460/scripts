@@ -6,7 +6,7 @@
 
 # Description: This script allow to 'write' individual PROKKA commands in a txt file which can be used by GNU parallel
 
-# Note: This script contains hard linkd, notably to the The Comprehensive Antibiotic Resistance Database v. 3.03
+# Note: This script contains hard links, notably to the The Comprehensive Antibiotic Resistance Database v. 3.03
 
 # Usage lauchProkka.sh (i) full_path_MOB_suite_folder (ii) full_path_PROKKA_folder (iii) SPECIES_INFOS
 
