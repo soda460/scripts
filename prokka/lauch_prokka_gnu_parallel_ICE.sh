@@ -35,10 +35,11 @@ mkdir -p $2/input_files
 
 printf "\n"
 
-# Creation and filling of 3 arrays
+# Creation and filling of arrays
 declare -a dna_ids
 declare -a genus_array
 declare -a species_array
+declare -a locus_array
 
 # Make newlines the only separator
 IFS=$'\n'       
@@ -48,6 +49,7 @@ for i in $(cat $3); do
 	dna_ids[j]=$(echo $i | cut -f 1 | tr -d '\n')
 	genus_array[j]=$(echo  $i | cut -f 2 | tr -d '\n')
 	species_array[j]=$(echo $i | cut -f 3 | tr -d '\n')
+	locus_array[j]=$(echo $i | cut -f 4 | tr -d '\n')
 	((j++))
 done
 
@@ -78,7 +80,8 @@ for i in "${dna_ids[@]}"; do
 		# Here we write the full PROKKA command
 		echo "prokka --prefix $i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
 		echo "--force --addgenes --outdir $2/$i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
-		echo "--genus ${genus_array[dna_id_count]} --species ${species_array[dna_id_count]} --strain $i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
+		echo "--genus ${genus_array[dna_id_count]} --locustag ${locus_array[dna_id_count]} " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
+		echo "--species ${species_array[dna_id_count]} --strain $i " | tr -d '\n' >> $sourceDir/prokka_chr_commands.txt
 		echo "--proteins /data/ext4/dataDP/db/CARD_DB/protein_fasta_protein_homolog_model.fasta --usegenus --evalue 1e-09 $2/input_files/$i/largest_chr_contig.fasta" >> $sourceDir/prokka_chr_commands.txt
 
 	done
